@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 142, 84, 63),
         centerTitle: true,
-        title: const Text('EXPANCE TRACKER'),
+        title: const Text('EXPENSOO'),
       ),
       backgroundColor: const Color.fromARGB(255, 106, 70, 70),
       bottomNavigationBar: const Expancebottamnavigation(),
