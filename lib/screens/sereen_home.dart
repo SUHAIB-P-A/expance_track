@@ -12,6 +12,11 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 142, 84, 63),
+        centerTitle: true,
+        title: const Text('EXPANCE TRACKER'),
+      ),
       backgroundColor: const Color.fromARGB(255, 106, 70, 70),
       bottomNavigationBar: const Expancebottamnavigation(),
       body: SafeArea(
@@ -21,6 +26,19 @@ class Home extends StatelessWidget {
             return pages[updated];
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (selectedindex.value == 0) {
+            print('add expance');
+          } else {
+            print('add category');
+          }
+        },
+        foregroundColor: const Color.fromARGB(255, 108, 106, 106),
+        tooltip: 'add expance',
+        splashColor: Colors.purple,
+        child: const Icon(Icons.add),
       ),
     );
   }
