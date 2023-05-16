@@ -13,11 +13,18 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 142, 84, 63),
+        clipBehavior: Clip.hardEdge,
+        shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        bottom: Radius.circular(30),
+      ),
+    ),
+        elevation: 20.0,
+        backgroundColor: const Color.fromARGB(66, 199, 186, 186),
         centerTitle: true,
         title: const Text('EXPENSOO'),
       ),
-      backgroundColor: const Color.fromARGB(255, 106, 70, 70),
+      backgroundColor: const Color.fromARGB(66, 199, 186, 186),
       bottomNavigationBar: const Expancebottamnavigation(),
       body: SafeArea(
         child: ValueListenableBuilder(

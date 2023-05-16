@@ -10,7 +10,7 @@ class Expancebottamnavigation extends StatelessWidget {
       valueListenable: Home.selectedindex,
       builder: (context, updated, _) {
         return BottomNavigationBar(
-          backgroundColor: const Color.fromARGB(255, 108, 79, 69),
+          backgroundColor: const Color.fromARGB(66, 199, 186, 186),
           mouseCursor: MouseCursor.uncontrolled,
           useLegacyColorScheme: true,
           showSelectedLabels: false,
@@ -21,7 +21,6 @@ class Expancebottamnavigation extends StatelessWidget {
           onTap: (newvalue) {
             Home.selectedindex.value = newvalue;
           },
-          elevation: 10.0,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
