@@ -14,6 +14,7 @@ class scr_tarnsations extends StatelessWidget {
         shrinkWrap: false,
         itemBuilder: (context, index) {
           return const Card(
+            color:Color.fromARGB(66, 199, 186, 186),
             shadowColor: Color.fromARGB(255, 112, 110, 110),
             child: ListTile(
               leading: CircleAvatar(

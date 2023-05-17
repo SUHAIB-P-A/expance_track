@@ -11,7 +11,6 @@ class Expancebottamnavigation extends StatelessWidget {
       builder: (context, updated, _) {
         return BottomNavigationBar(
           backgroundColor: const Color.fromARGB(66, 199, 186, 186),
-          mouseCursor: MouseCursor.uncontrolled,
           useLegacyColorScheme: true,
           showSelectedLabels: false,
           showUnselectedLabels: true,
