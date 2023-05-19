@@ -1,3 +1,4 @@
+import 'package:expance_tracker/Database/category_db/db_category.dart';
 import 'package:expance_tracker/catagory_screen/expance_cat_list.dart';
 import 'package:expance_tracker/catagory_screen/income_cat_list.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,11 @@ class _Scr_catagoryState extends State<Scr_catagory>
   @override
   void initState() {
     _tabcontroller1 = TabController(length: 2, vsync: this);
+    catagory_db().getcatagories().then((value) {
+      print('categories get');
+      print(value.toString());
+    });
+
     super.initState();
   }
 
