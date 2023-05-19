@@ -1,12 +1,15 @@
 import 'package:expance_tracker/models/categories/catagory_model.dart';
 import 'package:flutter/material.dart';
 
+ValueNotifier<catagory_type> selectcategory =
+    ValueNotifier(catagory_type.income);
 // ignore: non_constant_identifier_names
 Future<void> category_popup(BuildContext ctx) async {
   await showModalBottomSheet(
     showDragHandle: true,
     context: ctx,
     builder: (ctx1) {
+      // ignore: avoid_unnecessary_containers
       return Container(
         child: Column(
           children: [
@@ -41,14 +44,26 @@ class radiobutton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
-        Radio<catagory_type>(
-          value: type,
-          groupValue: catagory_type.income,
-          onChanged: (value) {},
-        ),
-        Text(title),
-      ],
-    );
+          children: [
+            ValueListenableBuilder(
+              valueListenable: selectcategory,
+              builder: (context, newcategory, child) {
+                return Radio<catagory_type>(
+                value: type,
+                groupValue: newcategory,
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+                  selectcategory.value = value;
+                  selectcategory.notifyListeners();
+                },
+              );
+              },
+              
+            ),
+            Text(title),
+          ],
+        );
   }
 }
