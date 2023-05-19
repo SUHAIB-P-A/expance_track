@@ -1,4 +1,7 @@
+import 'package:expance_tracker/Database/category_db/db_category.dart';
 import 'package:expance_tracker/catagory_screen/catagory.dart';
+import 'package:expance_tracker/catagory_screen/category_popup_bottamsheet.dart';
+import 'package:expance_tracker/models/categories/catagory_model.dart';
 import 'package:expance_tracker/screens/wedgets/bottamnavigationbar.dart';
 import 'package:expance_tracker/transation_screens/transation.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +18,10 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         clipBehavior: Clip.hardEdge,
         shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(
-        bottom: Radius.circular(30),
-      ),
-    ),
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          ),
+        ),
         elevation: 20.0,
         backgroundColor: const Color.fromARGB(66, 199, 186, 186),
         centerTitle: true,
@@ -39,7 +42,15 @@ class Home extends StatelessWidget {
           if (selectedindex.value == 0) {
             print('add expance');
           } else {
-            print('add category');
+             print('add category');
+             category_popup(context);
+            // //create a model to send insert_category() value'_sample' 
+            // final _sample = Category_Model(
+            //   id: DateTime.now().millisecondsSinceEpoch.toString(),
+            //   name: 'travel',
+            //   type: catagory_type.income,
+            // );
+            // catagory_db().insert_category(_sample);
           }
         },
         foregroundColor: const Color.fromARGB(255, 108, 106, 106),
