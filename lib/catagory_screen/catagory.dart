@@ -17,11 +17,7 @@ class _Scr_catagoryState extends State<Scr_catagory>
   @override
   void initState() {
     _tabcontroller1 = TabController(length: 2, vsync: this);
-    catagory_db().getcatagories().then((value) {
-      print('categories get');
-      print(value.toString());
-    });
-
+    catagory_db().refreshUI();
     super.initState();
   }
 

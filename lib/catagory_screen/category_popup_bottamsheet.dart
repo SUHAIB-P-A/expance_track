@@ -1,6 +1,8 @@
+import 'package:expance_tracker/Database/category_db/db_category.dart';
 import 'package:expance_tracker/models/categories/catagory_model.dart';
 import 'package:flutter/material.dart';
 
+final categorynameeditingcontroller = TextEditingController();
 ValueNotifier<catagory_type> selectcategory =
     ValueNotifier(catagory_type.income);
 // ignore: non_constant_identifier_names
@@ -14,6 +16,7 @@ Future<void> category_popup(BuildContext ctx) async {
         child: Column(
           children: [
             TextFormField(
+              controller: categorynameeditingcontroller,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(), hintText: 'add item name'),
             ),
@@ -24,7 +27,21 @@ Future<void> category_popup(BuildContext ctx) async {
               ],
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                final _name = categorynameeditingcontroller.text;
+                if (_name.isEmpty) {
+                  return;
+                } else {
+                  final _type = selectcategory.value;
+                  final categorypress = Category_Model(
+                    id: DateTime.now().microsecondsSinceEpoch.toString(),
+                    name: _name,
+                    type: _type,
+                  );
+                  catagory_db.instance.insert_category(categorypress);
+                  Navigator.of(ctx1).pop();
+                }
+              },
               child: const Text("add"),
             ),
           ],
@@ -44,26 +61,25 @@ class radiobutton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-          children: [
-            ValueListenableBuilder(
-              valueListenable: selectcategory,
-              builder: (context, newcategory, child) {
-                return Radio<catagory_type>(
-                value: type,
-                groupValue: newcategory,
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  selectcategory.value = value;
-                  selectcategory.notifyListeners();
-                },
-              );
+      children: [
+        ValueListenableBuilder(
+          valueListenable: selectcategory,
+          builder: (context, newcategory, child) {
+            return Radio<catagory_type>(
+              value: type,
+              groupValue: newcategory,
+              onChanged: (value) {
+                if (value == null) {
+                  return;
+                }
+                selectcategory.value = value;
+                selectcategory.notifyListeners();
               },
-              
-            ),
-            Text(title),
-          ],
-        );
+            );
+          },
+        ),
+        Text(title),
+      ],
+    );
   }
 }
