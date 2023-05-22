@@ -15,6 +15,14 @@ class _screentransationaddState extends State<screentransationadd> {
   catagory_type? _selectedcatagory;
   Category_Model? _selectedcategorymodel;
 
+  String? _dropdowncategoryid;
+
+  @override
+  void initState() {
+    _selectedcatagory = catagory_type.income;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +38,18 @@ class _screentransationaddState extends State<screentransationadd> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const Center(
+                    child: Text(
+                      'ADD DATA',
+                      style: TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   //porpose
                   TextFormField(
                     keyboardType: TextInputType.text,
@@ -66,38 +86,51 @@ class _screentransationaddState extends State<screentransationadd> {
                     ),
                   ),
                   //date
-                  TextButton.icon(
-                    onPressed: () async {
-                      final _selectdatetemp = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate:
-                            DateTime.now().subtract(const Duration(days: 30)),
-                        lastDate: DateTime.now(),
-                      );
-                      if (_selectdatetemp == null) {
-                        return;
-                      } else {
-                        print(_selectdatetemp);
-                        setState(() {
-                          _selecteddatetime = _selectdatetemp;
-                        });
-                      }
-                    },
-                    icon: const Icon(Icons.calendar_month_outlined),
-                    label: Text(_selecteddatetime == null
-                        ? "select date"
-                        : _selecteddatetime.toString()),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton.icon(
+                        onPressed: () async {
+                          final _selectdatetemp = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now()
+                                .subtract(const Duration(days: 30)),
+                            lastDate: DateTime.now(),
+                          );
+                          if (_selectdatetemp == null) {
+                            return;
+                          } else {
+                            print(_selectdatetemp);
+                            setState(() {
+                              _selecteddatetime = _selectdatetemp;
+                            });
+                          }
+                        },
+                        icon: const Icon(Icons.calendar_month_outlined),
+                        label: Text(_selecteddatetime == null
+                            ? "select date"
+                            : _selecteddatetime.toString()),
+                      ),
+                    ],
                   ),
                   //expance/income select
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Row(
                         children: [
                           Radio(
+                            fillColor: MaterialStateProperty.all(Colors.black),
+                            splashRadius: 20.0,
                             value: catagory_type.income,
-                            groupValue: catagory_type.income,
-                            onChanged: (newvalue) {},
+                            groupValue: _selectedcatagory,
+                            onChanged: (newvalue) {
+                              setState(() {
+                                _selectedcatagory = catagory_type.income;
+                              });
+                              _dropdowncategoryid = null;
+                            },
                           ),
                           const Text("income")
                         ],
@@ -105,9 +138,16 @@ class _screentransationaddState extends State<screentransationadd> {
                       Row(
                         children: [
                           Radio(
+                            fillColor: MaterialStateProperty.all(Colors.black),
+                            splashRadius: 20.0,
                             value: catagory_type.expance,
-                            groupValue: catagory_type.expance,
-                            onChanged: (newvalue) {},
+                            groupValue: _selectedcatagory,
+                            onChanged: (newvalue) {
+                              setState(() {
+                                _selectedcatagory = catagory_type.expance;
+                              });
+                              _dropdowncategoryid = null;
+                            },
                           ),
                           const Text("expance")
                         ],
@@ -115,26 +155,66 @@ class _screentransationaddState extends State<screentransationadd> {
                     ],
                   ),
                   //category
-                  DropdownButton(
-                    hint: const Text('select category'),
-                    items: catagory_db.instance.incomecotegorylistlistner.value.map(
-                      (e) {
-                        return DropdownMenuItem(
-                          value: e.id,
-                          child: Text(e.name),
-                        );
-                      },
-                    ).toList(),
-                    onChanged: (selectedvalue) {
-                      print('seleted value');
-                    },
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      DecoratedBox(
+                        decoration: const ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              width: 1.0,
+                              style: BorderStyle.solid,
+                              color: Colors.black,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(25.0),
+                            ),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 40.0, vertical: 0.0),
+                          child: DropdownButton(
+                            underline: const SizedBox(),
+                            hint: const Text('select category'),
+                            value: _dropdowncategoryid,
+                            items: (_selectedcatagory == catagory_type.income
+                                    ? catagory_db
+                                        .instance.incomecotegorylistlistner
+                                    : catagory_db
+                                        .instance.expancecotegorylistlistner)
+                                .value
+                                .map(
+                              (e) {
+                                return DropdownMenuItem(
+                                  value: e.id,
+                                  child: Text(e.name),
+                                );
+                              },
+                            ).toList(),
+                            onChanged: (selectedvalue) {
+                              setState(() {
+                                _dropdowncategoryid = selectedvalue;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  ElevatedButton(
-                    
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text("submit"))
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text("submit")),
+                    ],
+                  )
                 ],
               ),
             ),
