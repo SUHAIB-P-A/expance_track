@@ -13,38 +13,73 @@ Future<void> category_popup(BuildContext ctx) async {
     builder: (ctx1) {
       // ignore: avoid_unnecessary_containers
       return Container(
-        child: Column(
-          children: [
-            TextFormField(
-              controller: categorynameeditingcontroller,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'add item name'),
+        color: Color.fromARGB(240, 228, 223, 223),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            clipBehavior: Clip.antiAlias,
+            surfaceTintColor: Color.fromARGB(142, 93, 89, 89),
+            shadowColor: const Color.fromARGB(96, 108, 101, 101),
+            color: const Color.fromARGB(66, 199, 186, 186),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                    controller: categorynameeditingcontroller,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      hintText: 'Add Category Item',
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 5.0),
+                      filled: true,
+                      fillColor: Colors.white24,
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                  ),
+                  const Row(
+                    children: [
+                      radiobutton(title: 'income', type: catagory_type.income),
+                      radiobutton(
+                          title: 'expance', type: catagory_type.expance),
+                    ],
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                        const Color.fromARGB(66, 199, 186, 186),
+                      ),
+                    ),
+                    onPressed: () {
+                      final _name = categorynameeditingcontroller.text;
+                      if (_name.isEmpty) {
+                        return;
+                      } else {
+                        final _type = selectcategory.value;
+                        final categorypress = Category_Model(
+                          id: DateTime.now().microsecondsSinceEpoch.toString(),
+                          name: _name,
+                          type: _type,
+                        );
+                        catagory_db.instance.insert_category(categorypress);
+                        Navigator.of(ctx1).pop();
+                        categorynameeditingcontroller.clear();
+                      }
+                    },
+                    child: const Text("add"),
+                  ),
+                ],
+              ),
             ),
-            const Row(
-              children: [
-                radiobutton(title: 'income', type: catagory_type.income),
-                radiobutton(title: 'expance', type: catagory_type.expance),
-              ],
-            ),
-            ElevatedButton(
-              onPressed: () {
-                final _name = categorynameeditingcontroller.text;
-                if (_name.isEmpty) {
-                  return;
-                } else {
-                  final _type = selectcategory.value;
-                  final categorypress = Category_Model(
-                    id: DateTime.now().microsecondsSinceEpoch.toString(),
-                    name: _name,
-                    type: _type,
-                  );
-                  catagory_db.instance.insert_category(categorypress);
-                  Navigator.of(ctx1).pop();
-                }
-              },
-              child: const Text("add"),
-            ),
-          ],
+          ),
         ),
       );
     },

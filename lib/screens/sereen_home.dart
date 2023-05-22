@@ -4,6 +4,7 @@ import 'package:expance_tracker/catagory_screen/category_popup_bottamsheet.dart'
 import 'package:expance_tracker/models/categories/catagory_model.dart';
 import 'package:expance_tracker/screens/wedgets/bottamnavigationbar.dart';
 import 'package:expance_tracker/transation_screens/transation.dart';
+import 'package:expance_tracker/transation_screens/transation_add/transation_add_screen.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -41,6 +42,7 @@ class Home extends StatelessWidget {
         onPressed: () {
           if (selectedindex.value == 0) {
             print('add expance');
+            Navigator.of(context).pushNamed(screentransationadd.routename);
           } else {
              print('add category');
              category_popup(context);
