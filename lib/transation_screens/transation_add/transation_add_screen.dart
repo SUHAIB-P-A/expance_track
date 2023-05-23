@@ -1,5 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:expance_tracker/Database/category_db/db_category.dart';
+import 'package:expance_tracker/Database/transation_db/db_transation.dart';
 import 'package:expance_tracker/models/categories/catagory_model.dart';
+import 'package:expance_tracker/models/transations/transation_model.dart';
 import 'package:flutter/material.dart';
 
 class screentransationadd extends StatefulWidget {
@@ -11,6 +15,9 @@ class screentransationadd extends StatefulWidget {
 }
 
 class _screentransationaddState extends State<screentransationadd> {
+  final _purposetexteditingcontroller = TextEditingController();
+  final _amouttexteditingcontroller = TextEditingController();
+
   DateTime? _selecteddatetime;
   catagory_type? _selectedcatagory;
   Category_Model? _selectedcategorymodel;
@@ -52,6 +59,7 @@ class _screentransationaddState extends State<screentransationadd> {
                   ),
                   //porpose
                   TextFormField(
+                    controller: _purposetexteditingcontroller,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       hintText: 'Add purpose',
@@ -71,7 +79,8 @@ class _screentransationaddState extends State<screentransationadd> {
                   ),
                   //amount
                   TextFormField(
-                    keyboardType: TextInputType.text,
+                    controller: _amouttexteditingcontroller,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: 'Add amount',
                       contentPadding: const EdgeInsets.symmetric(
@@ -221,6 +230,9 @@ class _screentransationaddState extends State<screentransationadd> {
                                 .map(
                               (e) {
                                 return DropdownMenuItem(
+                                  onTap: () {
+                                    _selectedcategorymodel = e;
+                                  },
                                   value: e.id,
                                   child: Text(
                                     e.name,
@@ -249,6 +261,7 @@ class _screentransationaddState extends State<screentransationadd> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
+                          addtransation();
                           Navigator.of(context).pop();
                         },
                         style: ButtonStyle(
@@ -270,5 +283,43 @@ class _screentransationaddState extends State<screentransationadd> {
         ),
       ),
     );
+  }
+
+  Future<void> addtransation() async {
+    final _purposetext = _purposetexteditingcontroller.text;
+    final _amounttext = _amouttexteditingcontroller.text;
+    if (_purposetext.isEmpty) {
+      return;
+    }
+    if (_amounttext.isEmpty) {
+      return;
+    }
+    if (_dropdowncategoryid == null) {
+      return;
+    }
+    if (_selecteddatetime == null) {
+      return;
+    }
+
+    final _parsedamount = double.tryParse(_amounttext);
+    if (_parsedamount == null) {
+      return;
+    }
+    if (_selectedcategorymodel == null) {
+      return;
+    }
+    // _selecteddatetime;
+    //_selectedcatagory;
+    //_dropdowncategoryid;
+
+    final _Model = TransationModel(
+      id: DateTime.now().microsecondsSinceEpoch.toString(),
+      purpos: _purposetext,
+      amount: _parsedamount,
+      date: _selecteddatetime!,
+      type: _selectedcatagory!,
+      listitemscategory: _selectedcategorymodel!,
+    );
+    funcTransation.instance.addtransations(_Model);
   }
 }
