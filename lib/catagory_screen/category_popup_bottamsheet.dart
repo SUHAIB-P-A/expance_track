@@ -52,6 +52,7 @@ Future<void> category_popup(BuildContext ctx) async {
                           title: 'expance', type: catagory_type.expance),
                     ],
                   ),
+                  //button
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(

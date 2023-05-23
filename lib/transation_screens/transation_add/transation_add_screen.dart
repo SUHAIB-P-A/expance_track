@@ -92,6 +92,9 @@ class _screentransationaddState extends State<screentransationadd> {
                       TextButton.icon(
                         onPressed: () async {
                           final _selectdatetemp = await showDatePicker(
+                            keyboardType: TextInputType.numberWithOptions(),
+                            confirmText: 'confirm',
+                            cancelText: 'dismiss',
                             context: context,
                             initialDate: DateTime.now(),
                             firstDate: DateTime.now()
@@ -107,10 +110,19 @@ class _screentransationaddState extends State<screentransationadd> {
                             });
                           }
                         },
-                        icon: const Icon(Icons.calendar_month_outlined),
-                        label: Text(_selecteddatetime == null
-                            ? "select date"
-                            : _selecteddatetime.toString()),
+                        icon: const Icon(
+                          Icons.calendar_month_outlined,
+                          color: Colors.black,
+                        ),
+                        label: Text(
+                          _selecteddatetime == null
+                              ? "SELECT DATE"
+                              : _selecteddatetime.toString(),
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -132,7 +144,13 @@ class _screentransationaddState extends State<screentransationadd> {
                               _dropdowncategoryid = null;
                             },
                           ),
-                          const Text("income")
+                          const Text(
+                            "income",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
                         ],
                       ),
                       Row(
@@ -149,12 +167,21 @@ class _screentransationaddState extends State<screentransationadd> {
                               _dropdowncategoryid = null;
                             },
                           ),
-                          const Text("expance")
+                          const Text(
+                            "expance",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
                         ],
                       ),
                     ],
                   ),
-                  //category
+                  //categorydropduwn
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -175,8 +202,15 @@ class _screentransationaddState extends State<screentransationadd> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 40.0, vertical: 0.0),
                           child: DropdownButton(
+                            borderRadius: BorderRadius.circular(10),
+                            dropdownColor: Colors.grey,
                             underline: const SizedBox(),
-                            hint: const Text('select category'),
+                            hint: const Text(
+                              'select category',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             value: _dropdowncategoryid,
                             items: (_selectedcatagory == catagory_type.income
                                     ? catagory_db
@@ -188,7 +222,12 @@ class _screentransationaddState extends State<screentransationadd> {
                               (e) {
                                 return DropdownMenuItem(
                                   value: e.id,
-                                  child: Text(e.name),
+                                  child: Text(
+                                    e.name,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 );
                               },
                             ).toList(),
@@ -209,10 +248,19 @@ class _screentransationaddState extends State<screentransationadd> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: const Text("submit")),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.white24),
+                        ),
+                        child: const Text(
+                          "submit",
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ],
                   )
                 ],
