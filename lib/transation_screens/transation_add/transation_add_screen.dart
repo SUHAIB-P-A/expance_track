@@ -262,6 +262,7 @@ class _screentransationaddState extends State<screentransationadd> {
                       ElevatedButton(
                         onPressed: () {
                           addtransation();
+                          funcTransation.instance.refreshui();
                           Navigator.of(context).pop();
                         },
                         style: ButtonStyle(
