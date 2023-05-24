@@ -13,12 +13,12 @@ Future<void> category_popup(BuildContext ctx) async {
     builder: (ctx1) {
       // ignore: avoid_unnecessary_containers
       return Container(
-        color: Color.fromARGB(240, 228, 223, 223),
+        color: const Color.fromARGB(240, 228, 223, 223),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Card(
             clipBehavior: Clip.antiAlias,
-            surfaceTintColor: Color.fromARGB(142, 93, 89, 89),
+            surfaceTintColor: const Color.fromARGB(142, 93, 89, 89),
             shadowColor: const Color.fromARGB(96, 108, 101, 101),
             color: const Color.fromARGB(66, 199, 186, 186),
             child: Padding(
