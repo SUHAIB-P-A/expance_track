@@ -2,6 +2,7 @@ import 'package:expance_tracker/models/categories/catagory_model.dart';
 import 'package:expance_tracker/models/transations/transation_model.dart';
 import 'package:expance_tracker/screens/sereen_home.dart';
 import 'package:expance_tracker/transation_screens/transation_add/transation_add_screen.dart';
+import 'package:expance_tracker/transation_screens/updatetransscreen/updatetransationscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
       ),
       home: const Home(),
       routes: {
-        screentransationadd.routename: (ctx) => const screentransationadd()
+        screentransationadd.routename: (ctx) => const screentransationadd(),
+        updatetransationsrc.routename: (ctx) => const updatetransationsrc()
       },
     );
   }
