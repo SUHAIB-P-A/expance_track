@@ -1,6 +1,7 @@
 import 'package:expance_tracker/Database/category_db/db_category.dart';
 import 'package:expance_tracker/Database/transation_db/db_transation.dart';
 import 'package:expance_tracker/models/categories/catagory_model.dart';
+import 'package:expance_tracker/transation_screens/updatetransscreen/updatetransationscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
@@ -26,20 +27,26 @@ class scr_tarnsations extends StatelessWidget {
             itemBuilder: (context, index) {
               final translist = newvalue[index];
               return Slidable(
-                startActionPane: ActionPane(motion: ScrollMotion(), children: [
-                  SlidableAction(
-                    onPressed: (ctx) {
-                      funcTransation.instance.deletetransation(translist.id!);
-                    },
-                    icon: Icons.delete,
-                  ),
-                ]),
-                endActionPane: ActionPane(
-                  motion: ScrollMotion(),
+                startActionPane: ActionPane(
+                  motion: const ScrollMotion(),
                   children: [
                     SlidableAction(
-                      onPressed: (ctx) {},
-                      icon: Icons.autorenew_rounded,
+                      onPressed: (ctx) {
+                        funcTransation.instance.deletetransation(translist.id!);
+                      },
+                      icon: Icons.delete,
+                    ),
+                  ],
+                ),
+                endActionPane: ActionPane(
+                  motion: const ScrollMotion(),
+                  children: [
+                    SlidableAction(
+                      onPressed: (context) {
+                        funcTransation.instance.deletetransation(translist.id!);
+                        Navigator.of(context).pushNamed(updatetransationsrc.routename);
+                      },
+                      icon: Icons.edit_document,
                     ),
                   ],
                 ),
