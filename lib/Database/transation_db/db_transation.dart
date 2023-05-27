@@ -33,7 +33,6 @@ class funcTransation implements transationdbfunctions {
   Future<void> addtransations(TransationModel obj) async {
     final transdb = await Hive.openBox<TransationModel>(TRANSATION_DB);
     await transdb.put(obj.id, obj);
-    print(transdb);
   }
 
   @override
