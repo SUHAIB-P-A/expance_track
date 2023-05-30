@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 class Home extends StatelessWidget {
   const Home({super.key});
 
+  static const routename = "home-screen";
+
   final pages = const [scr_tarnsations(), Scr_catagory()];
   static ValueNotifier<int> selectedindex = ValueNotifier(0);
 
@@ -17,6 +19,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         clipBehavior: Clip.hardEdge,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
