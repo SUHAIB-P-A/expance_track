@@ -1,6 +1,10 @@
+import 'package:expance_tracker/AuthenticationScreen/login/login_screen.dart';
+import 'package:expance_tracker/AuthenticationScreen/sign_up/signup_screen.dart';
+import 'package:expance_tracker/models/authentication/authentication_model.dart';
 import 'package:expance_tracker/models/categories/catagory_model.dart';
 import 'package:expance_tracker/models/transations/transation_model.dart';
 import 'package:expance_tracker/screens/sereen_home.dart';
+import 'package:expance_tracker/transation_screens/transation.dart';
 import 'package:expance_tracker/transation_screens/transation_add/transation_add_screen.dart';
 import 'package:expance_tracker/transation_screens/updatetransscreen/updatetransationscreen.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +22,9 @@ Future<void> main() async {
   if (!Hive.isAdapterRegistered(TransationModelAdapter().typeId)) {
     Hive.registerAdapter(TransationModelAdapter());
   }
+  if (!Hive.isAdapterRegistered(AuthenticationModelAdapter().typeId)) {
+    Hive.registerAdapter(AuthenticationModelAdapter());
+  }
 
   runApp(const MyApp());
 }
@@ -33,10 +40,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Home(),
+      
+      home:  loginsrc(),
       routes: {
         screentransationadd.routename: (ctx) => const screentransationadd(),
-        updatetransationsrc.routename: (ctx) => const updatetransationsrc()
+        updatetransationsrc.routename: (ctx) => const updatetransationsrc(),
+        Home.routename:(context) => const Home(),
+        signupsrc.routename:(context) =>  signupsrc()
       },
     );
   }
