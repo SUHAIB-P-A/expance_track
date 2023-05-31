@@ -6,7 +6,6 @@ A new Flutter project.
 
 This 
 
-https://github.com/thegreatcode1/expance_track/assets/121535933/4be74c75-de61-4193-a46f-76ff17ca0335
 
 project is a starting point for a Flutter application.
 
