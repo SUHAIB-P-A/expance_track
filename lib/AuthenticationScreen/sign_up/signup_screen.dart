@@ -1,9 +1,11 @@
+import 'package:expance_tracker/AuthenticationScreen/login/login_screen.dart';
 import 'package:expance_tracker/Database/authentication_db/signup.dart';
 import 'package:expance_tracker/models/authentication/authentication_model.dart';
 import 'package:expance_tracker/screens/sereen_home.dart';
 import 'package:expance_tracker/transation_screens/transation.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 // ignore: camel_case_types
 class signupsrc extends StatelessWidget {
@@ -26,9 +28,6 @@ class signupsrc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.amber,
-      ),
       body: Card(
         elevation: 0.0,
         margin: const EdgeInsets.only(
@@ -42,25 +41,29 @@ class signupsrc extends StatelessWidget {
           onFlipDone: (status) {
             print(status);
           },
-          front: Container(
-            width: 300,
-            height: 500,
-            decoration: const BoxDecoration(
-              color: Color(0xFF006666),
-              borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'SIGNUP',
-                  style: TextStyle(
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.bold,
-                      foreground: Paint()..shader = linearGradient),
-                )
-              ],
-            ),
+          front: Column(
+            children: [
+              Container(
+                width: 300,
+                height: 500,
+                decoration: const BoxDecoration(
+                  color: Color(0xFF006666),
+                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'SIGNUP',
+                      style: TextStyle(
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.bold,
+                          foreground: Paint()..shader = linearGradient),
+                    )
+                  ],
+                ),
+              ),
+            ],
           ),
           back: Container(
             width: 300,
@@ -79,7 +82,7 @@ class signupsrc extends StatelessWidget {
                     controller: emaileditingcontroller,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
-                      hintText: 'Email',
+                      hintText: 'Username',
                       contentPadding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 5.0),
                       filled: true,
@@ -118,15 +121,44 @@ class signupsrc extends StatelessWidget {
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
                           Color.fromARGB(144, 255, 255, 255))),
-                  onPressed: () {
-                    addlogindata();
-                    Navigator.of(context).pushNamed(Home.routename);
+                  onPressed: () async {
+                    final _email = emaileditingcontroller.text;
+                    final _password = passwordeditingcontroller.text;
+                    if (_email.isEmpty) {
+                      return;
+                    }
+                    if (_password.isEmpty) {
+                      return;
+                    }
+                    List<AuthenticationModel> db_values =
+                        await getlogindetails();
+                    for (var item in db_values) {
+                      if ((_email == item.email) &&
+                          (_password == item.password)) {
+                        checkvaluesfrominput_to_db_signup(context);
+                      } else {
+                        addlogindata();
+                        Navigator.of(context).pushNamed(Home.routename);
+                      }
+                    }
                   },
                   child: const Text(
                     'signup',
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('already have an account?'),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(loginsrc.routename);
+                      },
+                      child: const Text('Login'),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
@@ -150,5 +182,20 @@ class signupsrc extends StatelessWidget {
       password: _password,
     );
     addlogindetails(_loginmodel);
+  }
+
+  Future<void> checkvaluesfrominput_to_db_signup(BuildContext context) async {
+    var snackBar = const SnackBar(
+      width: 200,
+      duration: Duration(milliseconds: 1000),
+      backgroundColor: Color.fromARGB(255, 62, 196, 32),
+      behavior: SnackBarBehavior.floating,
+      padding: EdgeInsets.all(10.0),
+      content: Text(
+        "aldrady a account here",
+        textAlign: TextAlign.center,
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

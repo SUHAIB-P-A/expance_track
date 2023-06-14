@@ -43,16 +43,17 @@ class scr_tarnsations extends StatelessWidget {
                   children: [
                     SlidableAction(
                       onPressed: (context) {
+                        Navigator.of(context)
+                            .pushNamed(updatetransationsrc.routename);
                         funcTransation.instance.deletetransation(translist.id!);
-                        Navigator.of(context).pushNamed(updatetransationsrc.routename);
                       },
-                      icon: Icons.edit_document,
+                      icon: Icons.border_color_outlined,
                     ),
                   ],
                 ),
                 key: Key(translist.id!),
                 child: Card(
-                  color: const Color.fromARGB(66, 199, 186, 186),
+                  color:Color.fromARGB(255, 244, 244, 244),
                   shadowColor: const Color.fromARGB(255, 112, 110, 110),
                   child: ListTile(
                     leading: CircleAvatar(

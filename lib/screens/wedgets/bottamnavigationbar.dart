@@ -10,7 +10,7 @@ class Expancebottamnavigation extends StatelessWidget {
       valueListenable: Home.selectedindex,
       builder: (context, updated, _) {
         return BottomNavigationBar(
-          backgroundColor: const Color.fromARGB(66, 199, 186, 186),
+          backgroundColor: Color.fromARGB(241, 255, 255, 255),
           useLegacyColorScheme: true,
           showSelectedLabels: false,
           showUnselectedLabels: true,
@@ -22,12 +22,16 @@ class Expancebottamnavigation extends StatelessWidget {
           },
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(
+                Icons.home,
+                color: Color.fromARGB(255, 30, 115, 69),
+              ),
               label: 'tansation',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.category,
+                color: Color.fromARGB(255, 30, 115, 69),
               ),
               label: 'category',
             )

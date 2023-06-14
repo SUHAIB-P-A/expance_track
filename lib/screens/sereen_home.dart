@@ -29,9 +29,16 @@ class Home extends StatelessWidget {
         elevation: 20.0,
         backgroundColor: const Color.fromARGB(66, 199, 186, 186),
         centerTitle: true,
-        title: const Text('EXPENSOO'),
+        title: const Text(
+          'XPENSo',
+          style: TextStyle(
+            //fontFamily: 'Foldit',
+            color: Colors.black,
+            //fontSize: 55,
+          ),
+        ),
       ),
-      backgroundColor: const Color.fromARGB(66, 199, 186, 186),
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       bottomNavigationBar: const Expancebottamnavigation(),
       body: SafeArea(
         child: ValueListenableBuilder(
@@ -47,9 +54,9 @@ class Home extends StatelessWidget {
             print('add expance');
             Navigator.of(context).pushNamed(screentransationadd.routename);
           } else {
-             print('add category');
-             category_popup(context);
-            // //create a model to send insert_category() value'_sample' 
+            print('add category');
+            category_popup(context);
+            // //create a model to send insert_category() value'_sample'
             // final _sample = Category_Model(
             //   id: DateTime.now().millisecondsSinceEpoch.toString(),
             //   name: 'travel',

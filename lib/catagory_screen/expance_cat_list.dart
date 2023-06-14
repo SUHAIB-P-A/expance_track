@@ -13,7 +13,7 @@ class expance extends StatelessWidget {
         itemBuilder: (context, index) {
           final categoryexp=newlist[index];
           return Card(
-            color:const Color.fromARGB(66, 199, 186, 186) ,
+            color:const Color.fromARGB(255, 244, 244, 244),
             child: ListTile(
               title: Text(categoryexp.name),
               trailing:  IconButton(

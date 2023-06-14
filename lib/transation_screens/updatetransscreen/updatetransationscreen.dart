@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:expance_tracker/Database/category_db/db_category.dart';
 import 'package:expance_tracker/Database/transation_db/db_transation.dart';
 import 'package:expance_tracker/models/categories/catagory_model.dart';
@@ -5,7 +7,7 @@ import 'package:expance_tracker/models/transations/transation_model.dart';
 import 'package:flutter/material.dart';
 
 class updatetransationsrc extends StatefulWidget {
-  static const routename = "update-screen";
+  static const routename = "transation-add";
   const updatetransationsrc({super.key});
 
   @override

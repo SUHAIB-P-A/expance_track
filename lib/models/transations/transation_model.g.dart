@@ -17,12 +17,13 @@ class TransationModelAdapter extends TypeAdapter<TransationModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TransationModel(
+      id: fields[0] as String?,
       purpos: fields[1] as String,
       amount: fields[2] as double,
       date: fields[3] as DateTime,
       type: fields[4] as catagory_type,
       listitemscategory: fields[5] as Category_Model,
-    )..id = fields[0] as String;
+    );
   }
 
   @override
