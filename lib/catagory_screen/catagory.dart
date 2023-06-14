@@ -2,6 +2,7 @@ import 'package:expance_tracker/Database/category_db/db_category.dart';
 import 'package:expance_tracker/catagory_screen/expance_cat_list.dart';
 import 'package:expance_tracker/catagory_screen/income_cat_list.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Scr_catagory extends StatefulWidget {
   const Scr_catagory({super.key});
@@ -26,13 +27,15 @@ class _Scr_catagoryState extends State<Scr_catagory>
     return Column(
       children: [
         TabBar(
+          labelStyle: GoogleFonts.cinzel(fontWeight: FontWeight.bold),
           controller: _tabcontroller1,
           tabs: const [
             Tab(
-              text: 'incom',
+              
+              text: 'Income',
             ),
             Tab(
-              text: 'expance',
+              text: 'Expance',
             ),
           ],
         ),

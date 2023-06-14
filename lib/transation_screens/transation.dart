@@ -74,7 +74,7 @@ class scr_tarnsations extends StatelessWidget {
             },
             separatorBuilder: (context, index) {
               return const SizedBox(
-                height: 10,
+                height: 0,
               );
             },
             itemCount: newvalue.length,

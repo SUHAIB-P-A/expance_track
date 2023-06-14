@@ -6,6 +6,7 @@ import 'package:expance_tracker/screens/wedgets/bottamnavigationbar.dart';
 import 'package:expance_tracker/transation_screens/transation.dart';
 import 'package:expance_tracker/transation_screens/transation_add/transation_add_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -29,13 +30,14 @@ class Home extends StatelessWidget {
         elevation: 20.0,
         backgroundColor: const Color.fromARGB(66, 199, 186, 186),
         centerTitle: true,
-        title: const Text(
-          'XPENSo',
-          style: TextStyle(
-            //fontFamily: 'Foldit',
-            color: Colors.black,
-            //fontSize: 55,
+        title: Text(
+          style: GoogleFonts.tiltPrism(
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
           ),
+          'XPENSo',
         ),
       ),
       backgroundColor: Color.fromARGB(255, 255, 255, 255),
