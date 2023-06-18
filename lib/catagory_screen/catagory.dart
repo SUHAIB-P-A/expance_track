@@ -31,13 +31,21 @@ class _Scr_catagoryState extends State<Scr_catagory>
           controller: _tabcontroller1,
           tabs: const [
             Tab(
-              
               text: 'Income',
             ),
             Tab(
               text: 'Expance',
             ),
           ],
+          indicator: const ShapeDecoration(
+            shape: UnderlineInputBorder(
+              borderSide: BorderSide(width: 8.0),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.elliptical(50, 360),
+                topRight: Radius.elliptical(50, 360),
+              ),
+            ),
+          ),
         ),
         Expanded(
           child: TabBarView(

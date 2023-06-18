@@ -4,6 +4,7 @@ import 'package:expance_tracker/models/authentication/authentication_model.dart'
 import 'package:expance_tracker/screens/sereen_home.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 // ignore: camel_case_types
@@ -33,126 +34,136 @@ class _loginsrcState extends State<loginsrc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Card(
-        
-        elevation: 0.0,
-        margin: const EdgeInsets.only(
-            left: 50.0, right: 32.0, top: 100.0, bottom: 0.0),
-        color: Color.fromARGB(0, 0, 0, 0),
-        child: FlipCard(
-          alignment: Alignment.center,
-          direction: FlipDirection.VERTICAL,
-          side: CardSide.FRONT,
-          speed: 1000,
-          onFlipDone: (status) {
-            print(status);
-          },
-          front: Column(
+      backgroundColor: Color.fromARGB(0, 0, 0, 0),
+      body: FlipCard(
+        alignment: Alignment.center,
+        direction: FlipDirection.VERTICAL,
+        side: CardSide.FRONT,
+        speed: 1000,
+        onFlipDone: (status) {
+          print(status);
+        },
+        front: Column(
+          children: [
+            const SizedBox(
+              height: 100,
+            ),
+            Lottie.asset(
+              'assets/images/87845-hello.json',
+              repeat: false,
+            ),
+            Container(
+              width: 150,
+              height: 90,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(0, 0, 0, 0),
+                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Login',
+                    style: GoogleFonts.abrilFatface(
+                      textStyle: TextStyle(
+                        fontSize: 40.0,
+                        fontWeight: FontWeight.bold,
+                        foreground: Paint()..shader = linearGradient,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+        back: Container(
+          width: 300,
+          height: 500,
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(0, 0, 0, 0),
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 100,),
-              Lottie.asset(
-                  'assets/images/87845-hello.json',
-                  repeat: false,
-                ),
-              Container(
-                width: 150,
-                height: 90,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF006666),
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'LOGIN',
-                      style: TextStyle(
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
-                          foreground: Paint()..shader = linearGradient),
-                    )
-                  ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: _emaileditcontrol,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    hintText: 'Username',
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20.0, vertical: 5.0),
+                    filled: true,
+                    fillColor: Colors.white24,
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: _passwordeditcontrol,
+                  obscureText: true,
+                  obscuringCharacter: '*',
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20.0, vertical: 5.0),
+                    filled: true,
+                    fillColor: Colors.white24,
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(144, 255, 255, 255))),
+                onPressed: () {
+                  checkvaluesfrominput_to_db();
+                },
+                child: const Text(
+                  'login',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Need an account?',
+                    style: GoogleFonts.cinzel(
+                        textStyle: const TextStyle(color: Colors.white)),
+                  ),
+                  TextButton(
+                    style: const ButtonStyle(
+                      mouseCursor: MaterialStateMouseCursor.clickable,
+                    ),
+                    onPressed: () {
+                      
+                      Navigator.of(context)
+                          .pushReplacementNamed(signupsrc.routename);
+                    },
+                    child: const Text(
+                      'Signup',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              )
             ],
-          ),
-          back: Container(
-            width: 300,
-            height: 500,
-            decoration: const BoxDecoration(
-              color: Color(0xFF006666),
-              borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: _emaileditcontrol,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      hintText: 'Username',
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 5.0),
-                      filled: true,
-                      fillColor: Colors.white24,
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: _passwordeditcontrol,
-                    obscureText: true,
-                    obscuringCharacter: '*',
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      hintText: 'Password',
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 5.0),
-                      filled: true,
-                      fillColor: Colors.white24,
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          Color.fromARGB(144, 255, 255, 255))),
-                  onPressed: () {
-                    checkvaluesfrominput_to_db();
-                  },
-                  child: const Text(
-                    'login',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Need an account?'),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(signupsrc.routename);
-                      },
-                      child: const Text('Signup'),
-                    ),
-                  ],
-                )
-              ],
-            ),
           ),
         ),
       ),
@@ -160,6 +171,7 @@ class _loginsrcState extends State<loginsrc> {
   }
 
   Future<void> checkvaluesfrominput_to_db() async {
+    
     final _email = _emaileditcontrol.text;
     final _password = _passwordeditcontrol.text;
     if (_email.isEmpty) {
@@ -171,9 +183,9 @@ class _loginsrcState extends State<loginsrc> {
     List<AuthenticationModel> db_values = await getlogindetails();
     for (var item in db_values) {
       if ((_email == item.email) && (_password == item.password)) {
-        Navigator.of(context).pushNamed(Home.routename);
+        Navigator.of(context).pushReplacementNamed(Home.routename);
         break;
-      } else {
+      }  else {
         var snackBar = const SnackBar(
           width: 200,
           duration: Duration(milliseconds: 1000),
@@ -181,9 +193,10 @@ class _loginsrcState extends State<loginsrc> {
           behavior: SnackBarBehavior.floating,
           padding: EdgeInsets.all(10.0),
           content: Text(
-            "wrong username or password",
+            "wrong userid or password",
             textAlign: TextAlign.center,
             style: TextStyle(
+              color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
           ),

@@ -5,6 +5,7 @@ import 'package:expance_tracker/screens/sereen_home.dart';
 import 'package:expance_tracker/transation_screens/transation.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 // ignore: camel_case_types
@@ -28,11 +29,12 @@ class signupsrc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Card(
         elevation: 0.0,
         margin: const EdgeInsets.only(
             left: 50.0, right: 32.0, top: 100.0, bottom: 0.0),
-        color: const Color.fromARGB(225, 255, 255, 255),
+        color: const Color.fromARGB(0, 0, 0, 0),
         child: FlipCard(
           alignment: Alignment.center,
           direction: FlipDirection.HORIZONTAL,
@@ -43,22 +45,37 @@ class signupsrc extends StatelessWidget {
           },
           front: Column(
             children: [
+              const SizedBox(
+                height: 100,
+              ),
+              Lottie.asset(
+                'assets/images/111225-add-new-user.json',
+                height: 200,
+                width: 200,
+                repeat: false,
+              ),
+              const SizedBox(
+                height: 100,
+              ),
               Container(
-                width: 300,
-                height: 500,
+                width: 150,
+                height: 90,
                 decoration: const BoxDecoration(
-                  color: Color(0xFF006666),
+                  color: Color.fromARGB(255, 0, 0, 0),
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'SIGNUP',
-                      style: TextStyle(
+                      'signup',
+                      style: GoogleFonts.abrilFatface(
+                        textStyle: TextStyle(
                           fontSize: 40.0,
                           fontWeight: FontWeight.bold,
-                          foreground: Paint()..shader = linearGradient),
+                          foreground: Paint()..shader = linearGradient,
+                        ),
+                      ),
                     )
                   ],
                 ),
@@ -69,7 +86,7 @@ class signupsrc extends StatelessWidget {
             width: 300,
             height: 500,
             decoration: const BoxDecoration(
-              color: Color(0xFF006666),
+              color: Color.fromARGB(255, 0, 0, 0),
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
             ),
             child: Column(
@@ -122,6 +139,7 @@ class signupsrc extends StatelessWidget {
                       backgroundColor: MaterialStateProperty.all(
                           Color.fromARGB(144, 255, 255, 255))),
                   onPressed: () async {
+                    bool empty = await clearauth();
                     final _email = emaileditingcontroller.text;
                     final _password = passwordeditingcontroller.text;
                     if (_email.isEmpty) {
@@ -132,14 +150,18 @@ class signupsrc extends StatelessWidget {
                     }
                     List<AuthenticationModel> db_values =
                         await getlogindetails();
-                    for (var item in db_values) {
-                      if ((_email == item.email) &&
-                          (_password == item.password)) {
-                        checkvaluesfrominput_to_db_signup(context);
-                      } else {
-                        addlogindata();
-                        Navigator.of(context).pushNamed(Home.routename);
+                    if (!empty) {
+                      for (var item in db_values) {
+                        if ((_email == item.email) &&
+                            (_password == item.password)) {
+                          checkvaluesfrominput_to_db_signup(context);
+                          break;
+                        }
                       }
+                    } else {
+                      addlogindata();
+                      Navigator.of(context)
+                          .pushReplacementNamed(Home.routename);
                     }
                   },
                   child: const Text(
@@ -150,10 +172,16 @@ class signupsrc extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('already have an account?'),
+                    Text(
+                      'already have an account?',
+                      style: GoogleFonts.cinzel(
+                        color: Colors.white,
+                      ),
+                    ),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed(loginsrc.routename);
+                        Navigator.of(context)
+                            .pushReplacementNamed(loginsrc.routename);
                       },
                       child: const Text('Login'),
                     ),

@@ -1,5 +1,9 @@
 import 'package:expance_tracker/AuthenticationScreen/login/login_screen.dart';
+import 'package:expance_tracker/Database/authentication_db/signup.dart';
+import 'package:expance_tracker/models/authentication/authentication_model.dart';
+import 'package:expance_tracker/screens/sereen_home.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class ScreenSpalsh extends StatefulWidget {
@@ -24,16 +28,25 @@ class _ScreenSpalshState extends State<ScreenSpalsh> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Lottie.asset('assets/images/23917-loading-screen-pink.json'),
-          const Text('"You can make money two \n \tways make more, or \n \tspend less."',textAlign: TextAlign.center,)
+          Text(
+            '"You can make money two \n \tways make more, or \n \tspend less."',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.satisfy(fontWeight: FontWeight.w700),
+          ),
         ],
       ),
     );
   }
 
   Future<void> gotohome() async {
+    bool empty = await clearauth();
     await Future.delayed(
       const Duration(seconds: 5),
     );
-    Navigator.of(context).pushNamed(loginsrc.routename);
+    if (empty) {
+      Navigator.of(context).pushReplacementNamed(loginsrc.routename);
+    } else {
+      Navigator.of(context).pushReplacementNamed(Home.routename);
+    }
   }
 }

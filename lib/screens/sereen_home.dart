@@ -1,6 +1,8 @@
+import 'package:expance_tracker/AuthenticationScreen/login/login_screen.dart';
 import 'package:expance_tracker/Database/category_db/db_category.dart';
 import 'package:expance_tracker/catagory_screen/catagory.dart';
 import 'package:expance_tracker/catagory_screen/category_popup_bottamsheet.dart';
+import 'package:expance_tracker/chart_summary/show_bar_graph.dart';
 import 'package:expance_tracker/models/categories/catagory_model.dart';
 import 'package:expance_tracker/screens/wedgets/bottamnavigationbar.dart';
 import 'package:expance_tracker/transation_screens/transation.dart';
@@ -13,7 +15,7 @@ class Home extends StatelessWidget {
 
   static const routename = "home-screen";
 
-  final pages = const [scr_tarnsations(), Scr_catagory()];
+  final pages = const [scr_tarnsations(), Scr_catagory(),Show_bar_graph()];
   static ValueNotifier<int> selectedindex = ValueNotifier(0);
 
   @override
@@ -39,8 +41,16 @@ class Home extends StatelessWidget {
           ),
           'XPENSo',
         ),
+        actions: [
+          IconButton.outlined(
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(loginsrc.routename);
+            },
+            icon: const Icon(Icons.exit_to_app),
+          ),
+        ],
       ),
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       bottomNavigationBar: const Expancebottamnavigation(),
       body: SafeArea(
         child: ValueListenableBuilder(

@@ -40,7 +40,8 @@ dependencies:
   flutter_slidable: 3.0.0
   flip_card: 0.7.0
   lottie: 2.3.2
-  google_fonts: ^5.0.0
+  google_fonts: 5.0.0
+  fl_chart: 0.63.0
 
 dev_dependencies:
   flutter_test:
@@ -86,10 +87,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   
-  fonts:
-    - family: Foldit
-      fonts:
-        - asset: fonts/Foldit-VariableFont_wght.ttf
+  #fonts:
+   # - family: Foldit
+    #  fonts:
+     #   - asset: fonts/Foldit-VariableFont_wght.ttf
           #style: italic
    # - family: RobotoMono
    #   fonts:

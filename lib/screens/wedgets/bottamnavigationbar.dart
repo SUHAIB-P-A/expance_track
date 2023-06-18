@@ -39,7 +39,15 @@ class Expancebottamnavigation extends StatelessWidget {
                 color: Color.fromARGB(255, 30, 115, 69),
               ),
               label: 'Category',
-            )
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.auto_graph_outlined,
+                size: 30.0,
+                color: Color.fromARGB(255, 30, 115, 69),
+              ),
+              label: "Chart",
+            ),
           ],
         );
       },
