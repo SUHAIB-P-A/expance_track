@@ -9,8 +9,10 @@ import 'package:expance_tracker/transation_screens/transation.dart';
 import 'package:expance_tracker/transation_screens/transation_add/transation_add_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-final pages =  [scr_tarnsations(), Scr_catagory(), Show_bar_graph()];
+final pages = [scr_tarnsations(), Scr_catagory(), Show_bar_graph()];
+var clearedpass;
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -46,7 +48,10 @@ class Home extends StatelessWidget {
         actions: [
           IconButton.outlined(
             onPressed: () {
-              Navigator.of(context).pushReplacementNamed(loginsrc.routename);
+              returntologin();
+              if (clearedpass==null) {
+                Navigator.of(context).pushReplacementNamed(loginsrc.routename);
+              }
             },
             icon: const Icon(Icons.exit_to_app),
           ),
@@ -66,33 +71,39 @@ class Home extends StatelessWidget {
         valueListenable: selectedindex,
         builder: (context, updated, _) {
           return Visibility(
-        visible: updated!=2,
-        child: FloatingActionButton(
-          onPressed: () {
-            if (selectedindex.value == 0) {
-              print('add expance');
-              Navigator.of(context).pushNamed(screentransationadd.routename);
-            } else {
-              print('add category');
-              category_popup(context);
-              // //create a model to send insert_category() value'_sample'
-              // final _sample = Category_Model(
-              //   id: DateTime.now().millisecondsSinceEpoch.toString(),
-              //   name: 'travel',
-              //   type: catagory_type.income,
-              // );
-              // catagory_db().insert_category(_sample);
-            }
-          },
-          foregroundColor: const Color.fromARGB(255, 108, 106, 106),
-          tooltip: 'add expance',
-          splashColor: Colors.purple,
-          child: const Icon(Icons.add),
-        ),
-      );
-
+            visible: updated != 2,
+            child: FloatingActionButton(
+              onPressed: () {
+                if (selectedindex.value == 0) {
+                  print('add expance');
+                  Navigator.of(context)
+                      .pushNamed(screentransationadd.routename);
+                } else {
+                  print('add category');
+                  category_popup(context);
+                  // //create a model to send insert_category() value'_sample'
+                  // final _sample = Category_Model(
+                  //   id: DateTime.now().millisecondsSinceEpoch.toString(),
+                  //   name: 'travel',
+                  //   type: catagory_type.income,
+                  // );
+                  // catagory_db().insert_category(_sample);
+                }
+              },
+              foregroundColor: const Color.fromARGB(255, 108, 106, 106),
+              tooltip: 'add expance',
+              splashColor: Colors.purple,
+              child: const Icon(Icons.add),
+            ),
+          );
         },
       ),
     );
+  }
+
+  Future<void> returntologin() async {
+    final clearpass = await SharedPreferences.getInstance();
+    final nullpass = clearpass.clear();
+    clearedpass = nullpass;
   }
 }

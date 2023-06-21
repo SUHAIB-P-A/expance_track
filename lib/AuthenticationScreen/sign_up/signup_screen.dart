@@ -7,6 +7,7 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: camel_case_types
 class signupsrc extends StatelessWidget {
@@ -160,6 +161,7 @@ class signupsrc extends StatelessWidget {
                       }
                     } else {
                       addlogindata();
+                      checkloginorhome();
                       Navigator.of(context)
                           .pushReplacementNamed(Home.routename);
                     }
@@ -225,5 +227,15 @@ class signupsrc extends StatelessWidget {
       ),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  Future<void> checkloginorhome() async {
+//save data
+
+    final shareduser = await SharedPreferences.getInstance();
+    await shareduser.setString("username", emaileditingcontroller.text);
+
+    // final sharedpass = await SharedPreferences.getInstance();
+    // await sharedpass.setString("password", _passcontroller.text);
   }
 }
