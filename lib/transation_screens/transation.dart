@@ -4,6 +4,7 @@ import 'package:expance_tracker/models/categories/catagory_model.dart';
 import 'package:expance_tracker/transation_screens/updatetransscreen/updatetransationscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 // ignore: camel_case_types
@@ -53,21 +54,36 @@ class scr_tarnsations extends StatelessWidget {
                 ),
                 key: Key(translist.id!),
                 child: Card(
-                  color:Color.fromARGB(255, 244, 244, 244),
-                  shadowColor: const Color.fromARGB(255, 112, 110, 110),
+                  color: const Color.fromARGB(255, 244, 244, 244),
+                  shadowColor: const Color.fromARGB(255, 17, 59, 213),
                   child: ListTile(
                     leading: CircleAvatar(
-                      backgroundColor: translist.type == catagory_type.income
-                          ? Color.fromARGB(255, 12, 232, 20)
-                          : Color.fromARGB(255, 240, 28, 8),
+                      backgroundColor: Color.fromARGB(255, 255, 255, 255),
                       radius: 50,
                       child: Text(
                         parsedate(translist.date),
                         textAlign: TextAlign.center,
+                        style: GoogleFonts.crimsonText(
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                    title: Text('RS ${translist.amount}'),
-                    subtitle: Text(translist.listitemscategory.name),
+                    title: Text(
+                      translist.purpos,
+                      style: GoogleFonts.anton(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      translist.listitemscategory.name,
+                      //style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    trailing: Text(
+                      '₹${translist.amount}',
+                      style: TextStyle(
+                        color: translist.type == catagory_type.income
+                            ? const Color.fromARGB(255, 12, 232, 20)
+                            : const Color.fromARGB(255, 240, 28, 8),
+                      ),
+                    ),
                   ),
                 ),
               );

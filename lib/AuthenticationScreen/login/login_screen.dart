@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-var user;
+
 // ignore: camel_case_types
 class loginsrc extends StatefulWidget {
   loginsrc({super.key});
@@ -134,7 +134,7 @@ class _loginsrcState extends State<loginsrc> {
                         Color.fromARGB(144, 255, 255, 255))),
                 onPressed: () {
                   checkloginorhome1();
-                  print(user);
+                  
                   checkvaluesfrominput_to_db();
                 },
                 child: const Text(
@@ -213,7 +213,7 @@ class _loginsrcState extends State<loginsrc> {
 
     final shareduser = await SharedPreferences.getInstance();
     var inl = await shareduser.setString("username", _emaileditcontrol.text);
-user=inl;
+
     // final sharedpass = await SharedPreferences.getInstance();
     // await sharedpass.setString("password", _passcontroller.text);
   }
