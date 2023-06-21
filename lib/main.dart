@@ -4,6 +4,7 @@ import 'package:expance_tracker/models/authentication/authentication_model.dart'
 import 'package:expance_tracker/models/categories/catagory_model.dart';
 import 'package:expance_tracker/models/transations/transation_model.dart';
 import 'package:expance_tracker/screens/sereen_home.dart';
+import 'package:expance_tracker/screens/wedgets/bottamnavigationbar.dart';
 import 'package:expance_tracker/spalshscreen/spalsh_screen.dart';
 import 'package:expance_tracker/transation_screens/transation.dart';
 import 'package:expance_tracker/transation_screens/transation_add/transation_add_screen.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   if (!Hive.isAdapterRegistered(CategoryModelAdapter().typeId)) {
