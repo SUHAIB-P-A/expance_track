@@ -10,12 +10,16 @@ import 'package:expance_tracker/transation_screens/transation_add/transation_add
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 
 final pages = [scr_tarnsations(), Scr_catagory(), Show_bar_graph()];
 var clearedpass;
 
 class Home extends StatelessWidget {
   const Home({super.key});
+
+  
 
   static const routename = "home-screen";
 
@@ -107,4 +111,5 @@ class Home extends StatelessWidget {
     clearedpass = nullpass;
   }
 }
+
 //********** */
