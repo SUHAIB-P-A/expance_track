@@ -1,4 +1,9 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+package="com.example.expance_tracker">
+
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:label="expance_tracker"
         android:name="${applicationName}"
@@ -17,7 +22,7 @@
                  to determine the Window background behind the Flutter UI. -->
             <meta-data
               android:name="io.flutter.embedding.android.NormalTheme"
-              android:resource="@style/NormalTheme"
+              android:resource="@mipmap/ic_launcher"
               />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -29,5 +34,34 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <receiver
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"></action>
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver">
+            <intent-filter>
+                <action android:name="com.dexterous.flutterlocalnotifications.SCHEDULE_NOTIFICATION"></action>
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationRestarter"
+            
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"></action>
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"></action>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"></action>
+                <action android:name="com.lge.intent.action.QUICKBOOT_POWERON"></action>
+            </intent-filter>
+        </receiver>
+
     </application>
 </manifest>
