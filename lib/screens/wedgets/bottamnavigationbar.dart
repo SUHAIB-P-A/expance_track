@@ -43,16 +43,16 @@ class Expancebottamnavigation extends StatelessWidget {
               tabs: const [
                 GButton(
                   icon: Icons.home_outlined,
-                  text: 'Tansation',
+                  text: 'Transaction',
                 ),
                 GButton(
                   icon: Icons.category_outlined,
                   text: 'Category',
                 ),
-                GButton(
-                  icon: Icons.auto_graph_outlined,
-                  text: 'Chart',
-                ),
+                // GButton(
+                //   icon: Icons.auto_graph_outlined,
+                //   text: 'Chart',
+                // ),
               ],
               selectedIndex: updated,
               onTabChange: (newvalue) {

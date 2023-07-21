@@ -2,7 +2,7 @@ import 'package:expance_tracker/AuthenticationScreen/login/login_screen.dart';
 //import 'package:expance_tracker/Database/category_db/db_category.dart';
 import 'package:expance_tracker/catagory_screen/catagory.dart';
 import 'package:expance_tracker/catagory_screen/category_popup_bottamsheet.dart';
-import 'package:expance_tracker/chart_summary/show_bar_graph.dart';
+//import 'package:expance_tracker/chart_summary/show_bar_graph.dart';
 //import 'package:expance_tracker/models/categories/catagory_model.dart';
 import 'package:expance_tracker/screens/wedgets/bottamnavigationbar.dart';
 import 'package:expance_tracker/transation_screens/transation.dart';
@@ -10,10 +10,10 @@ import 'package:expance_tracker/transation_screens/transation_add/transation_add
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+//import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 
-final pages = [scr_tarnsations(), Scr_catagory(), Show_bar_graph()];
+final pages = [scr_tarnsations(), Scr_catagory()];
 var clearedpass;
 
 class Home extends StatelessWidget {
@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool showFab = selectedindex.value != 2;
+    //bool showFab = selectedindex.value != 2;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

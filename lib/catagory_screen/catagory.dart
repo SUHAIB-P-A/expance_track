@@ -34,7 +34,7 @@ class _Scr_catagoryState extends State<Scr_catagory>
               text: 'Income',
             ),
             Tab(
-              text: 'Expance',
+              text: 'Expense',
             ),
           ],
           indicator: const ShapeDecoration(
